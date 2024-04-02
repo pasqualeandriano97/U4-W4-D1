@@ -39,7 +39,7 @@ public class Pizza extends MenùItem {
                 ", calorie=" + calorie +
                 ", prezzo=" + prezzo +
                 "\nPizzas Toppings=" + toppings +
-                "\nMaxi=" + maxi +
+                "\nXL=" + maxi +
                 '\n';
     }
 }
