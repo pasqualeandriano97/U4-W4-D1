@@ -22,4 +22,7 @@ public class MenùItem {
         this.prezzo = prezzo;
     }
 
+    public double getPrezzo() {
+        return prezzo;
+    }
 }
