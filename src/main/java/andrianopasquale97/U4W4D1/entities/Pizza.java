@@ -1,46 +1,54 @@
 package andrianopasquale97.U4W4D1.entities;
 
 import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
+import java.util.Collection;
 import java.util.List;
 
-@Setter
 @Getter
+public class Pizza extends Item {
+	private String name;
 
-public class Pizza extends MenùItem {
-    private String nome;
-    private int calorie;
-    private double prezzo;
+	private List<Topping> toppingList;
+	private boolean isXl = false;
 
-    List<Toppings> toppings;
+	public Pizza(String name, List<Topping> toppingList, boolean isXl) {
+		super(700, 4.3);
+		this.name = name;
+		this.toppingList = toppingList;
+		this.isXl = isXl;
+	}
 
-    private boolean maxi;
+	@Override
+	public int getCalories() {
+		return super.getCalories() + this.getToppingList().stream().mapToInt(Topping::getCalories).sum();
+	}
 
+	public String getName() {
+		return name;
+	}
 
+	public List<Topping> getToppingList() {
+		return toppingList;
+	}
 
-    public Pizza(String nome, int calorie, double prezzo, List<Toppings> toppings,boolean maxi){
-        this.nome = nome;
-        this.calorie = calorie;
-        this.prezzo = prezzo;
-        this.toppings = toppings;
-        this.maxi =maxi;
-    }
+	public boolean isXl() {
+		return isXl;
+	}
 
-    public void setMaxi(boolean maxi) {
-        this.maxi = maxi;
-    }
+	@Override
+	public double getPrice() {
+		return super.getPrice() + this.getToppingList().stream().mapToDouble(Topping::getPrice).sum();
+	}
 
-    @Override
-    public String toString() {
-        return  "\n" +
-                 nome +
-                ", calorie=" + calorie +
-                ", prezzo=" + prezzo +
-                "\nPizzas Toppings=" + toppings +
-                "\nXL=" + maxi +
-                '\n';
-    }
+	@Override
+	public String toString() {
+		return "Pizza{" +
+				"name='" + name + '\'' +
+				", calories=" + calories +
+				", price=" + price +
+				", toppingList=" + toppingList +
+				", isXl=" + isXl +
+				'}';
+	}
 }
-
