@@ -68,16 +68,15 @@ class U4W4D1ApplicationTests {
 }
 
 	@ParameterizedTest
-	@ValueSource(strings = {"Menu1", "Menu2", "Menu3"})
+	@ValueSource(strings = {"S", "H"})
 	public void testPizzaNames(String menuName) {
 
-		List<Item> menuItems = List.of(appConfig.pizzaSalamiBean(),app)
+		List<Pizza> menuItems = List.of(appConfig.pizzaSalamiBean(), appConfig.pizzaHawaiianBean());
 
-		long count = menu.getItems().stream()
-				.filter(item -> item.getName().startsWith("P"))
+		long count = menuItems.stream()
+				.filter(pizza -> pizza.getName().startsWith(menuName))
 				.count();
-
-		Assertions.assertTrue(count > 1);
+		Assertions.assertTrue(count > 0);
 
 	}
 
